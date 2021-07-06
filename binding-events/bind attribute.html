@@ -1,0 +1,19 @@
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+<body>
+<div id="app">
+    
+    <h1 v-once>{{title}}</h1>   // v- once It treats the element as a static content after rendering it once for the first time
+
+   <p> {{ sayHello() }} - <a v-bind:href ="vueLink">w3school</a></p>    //v- bind bind the attribute in dynamic way
+   
+   <hr>
+   <p v-html="finished"></p>  //v-html In order to display the HTML,used to update a element’s innerHTML with our data. 
+  
+</div>
+  <script src="bind attribute.js"></script> 
+  </body>
+  </html>
