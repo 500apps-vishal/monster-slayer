@@ -1,0 +1,35 @@
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+<body>
+<div id="app">
+    
+    <ul>
+        <h1>Fruits</h1>
+     <li v-for='(ingredient,index) in ingrediants'>{{ingredient}}  -{{index}} </li>
+     </ul>
+
+
+     <template v-for='(ingredient,index) in ingrediants'>
+        <h3>{{ingredient}}</h3>
+         <p>{{index}}</p>
+     </template>
+ 
+     
+
+<hr>
+    <ul>
+        <li v-for='person in persons'>{{person.name}}<br>   //display only particuler value
+
+
+        <li v-for='person in persons'>
+        <div v-for='(value,key,index) in person'>{{key}}  : {{value}}  - {{index}}</div></li> //key used Updating the order of elements.
+    </ul>
+
+  </div>
+
+  <script src="v-for.js"></script>
+  </body>
+  </html>

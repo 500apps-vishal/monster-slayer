@@ -1,0 +1,20 @@
+
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+<body>
+<div id="app">
+    <h1>Say..</h1>
+   <p v-if="message"> Good Morning</p>      
+   <p v-else="message">Good Evening</p>     
+   <template v-if="message">
+       <h1>Good Afternoon</h1>
+       <p v-show="message">Welcome to the World</p>   //v-show click the button display the hide data
+   </template>
+   <button v-on:click="message=!message">post</button>
+  </div>
+
+  <script src="v-if.js"></script>
+  </body>
+  </html>
