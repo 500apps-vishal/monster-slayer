@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Monster GAME</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <script
+      src="https://unpkg.com/vue@next"
+      defer
+    ></script>
+    <script src="monster.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section
+        id="monster"
+        class="container"
+      >
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div
+            class="healthbar__value"
+            :style="monsterBarstyle"
+          ></div>
+        </div>
+      </section>
+      <section
+        id="player"
+        class="container"
+      >
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div
+            class="healthbar__value"
+            :style="playerBarstyle"
+          ></div>
+        </div>
+      </section>
+      <section
+        class="container"
+        v-if="winner"
+      >
+        <h2>Game over!</h2>
+        <h3 v-if="winner == 'monster'">
+          You lost!!!
+        </h3>
+        <h3
+          v-else-if="winner == 'player'"
+        >
+          You Won the BATTLE!!
+        </h3>
+        <h3 v-else>Its a DRAW!@!</h3>
+        <button @click="startGame">
+          Start new GAME
+        </button>
+      </section>
+      <section
+        id="controls"
+        v-else="!winner"
+      >
+        <button @click="attackMonster">
+          ATTACK
+        </button>
+        <button
+          :disabled="mayUseSpecialAttack"
+          @click="specialAttackMonster"
+        >
+          SPECIAL ATTACK
+        </button>
+        <button @click="healPlayer">
+          HEAL
+        </button>
+        <button @click="surrender">
+          SURRENDER
+        </button>
+      </section>
+      <section
+        id="log"
+        class="container"
+      >
+        <h2>Battle Log</h2>
+        <ul>
+          <li
+            v-for="log in logMessage"
+            :key="log"
+          >
+            <span
+              :class="{'log--player':log.actionby === 'player','log--monster': log.actionby === 'monster'}"
+            >
+              {{log.actionby ===
+              'player' ? 'Player' :
+              'Monster'}}</span
+            >
+            <span
+              class="log--heal"
+              v-if="log.actiontype ==='heal'"
+            >
+              heals himself for
+              {{log.actionvalue}}</span
+            >
+            <span
+              class="special"
+              v-else-if="log.actiontype ==='special-attack'"
+            >
+              uses special attack and
+              deals
+              {{log.actionvalue}}</span
+            >
+
+            <span
+              class="log--damage"
+              v-else="log.actiontype ==='attack'"
+            >
+              attacks and deals
+              {{log.actionvalue}}</span
+            >
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
